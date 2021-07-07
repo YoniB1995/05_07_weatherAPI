@@ -1,16 +1,19 @@
-import React from 'react'
+import React ,{useRef,useState} from 'react'
 
 export default function TextInput(props) {
-    const {count , inc , reset , inputRef} = props.useCounter();
-    function myReset(){
-        reset();
-        inputRef.current.style.background = "black"
+    const {count , upCount , resetNum} = props.CountState();
+    const inputRef = useRef();
+
+    const changeTheme = ()=>{
+        inputRef.current.style.display="none"
     }
+
     return (
         <div>
             <p>{count}</p>
-            <input type="text" name="" id="" onChange={inc} ref={inputRef} />
-            <button onClick={myReset}>RESET</button>
+            <input type="text" ref={inputRef} onChange={upCount}/>
+            <button onClick={resetNum}>Reset</button>
+            <button onClick={changeTheme}>REMOVE</button>
         </div>
     )
 }
